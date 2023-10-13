@@ -5,121 +5,223 @@ import com.github.iamnoyou.calloutsmod.util.CalloutsUtil;
 import com.github.iamnoyou.calloutsmod.util.PositionUtil;
 import com.github.iamnoyou.calloutsmod.util.RegionUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Overgrown {
 
+  private static RegionUtil createRegion(PositionUtil pos1, PositionUtil pos2) {
+    return new RegionUtil(pos1, pos2);
+  }
+
   public static List<CalloutsUtil> createCallouts() {
     List<CalloutsUtil> list = new ArrayList<>();
-    RegionUtil baseballaholic1 = new RegionUtil(new PositionUtil(22.3, 5.0, -8.3), new PositionUtil(22.3, 5.0, -8.3));
-    list.add(new CalloutsUtil("baseballaholic", new RegionUtil[]{baseballaholic1}));
-    RegionUtil tSpawn1 = new RegionUtil(new PositionUtil(42.3, 10.0, 29.0), new PositionUtil(52.7, 13.5, -6.0));
-    list.add(new CalloutsUtil("T Spawn", new RegionUtil[]{tSpawn1}));
-    RegionUtil tRamp1 = new RegionUtil(new PositionUtil(52.7, 13.5, -6.0), new PositionUtil(38.0, 5.0, -21.0));
-    list.add(new CalloutsUtil("T Ramp", new RegionUtil[]{tRamp1}));
-    RegionUtil outsideLong1 = new RegionUtil(new PositionUtil(37.0, 5.0, -13.0), new PositionUtil(23.3, 8.5, -23.0));
-    list.add(new CalloutsUtil("Outside Long", new RegionUtil[]{outsideLong1}));
-    RegionUtil topMid1 = new RegionUtil(new PositionUtil(33.0, 4.0, -14.0), new PositionUtil(15.3, 8.5, 3.7));
-    list.add(new CalloutsUtil("Top Mid", new RegionUtil[]{topMid1}));
-    RegionUtil suicide1 = new RegionUtil(new PositionUtil(33.0, 7.0, -0.7), new PositionUtil(41.7, 8.5, 4.7));
-    list.add(new CalloutsUtil("Suicide", new RegionUtil[]{suicide1}));
-    RegionUtil aPillar1 = new RegionUtil(new PositionUtil(6.0, 3.0, -8.0), new PositionUtil(-1.0, 5.5, -1.0));
-    list.add(new CalloutsUtil("A Pillar", new RegionUtil[]{aPillar1}));
-    RegionUtil bPillar1 = new RegionUtil(new PositionUtil(2.0, 6.5, 2.0), new PositionUtil(-5.0, 3.0, 9.0));
-    list.add(new CalloutsUtil("B Pillar", new RegionUtil[]{bPillar1}));
-    RegionUtil mid1 = new RegionUtil(new PositionUtil(6.0, 3.0, -14.7), new PositionUtil(15.0, 7.5, 12.7));
-    list.add(new CalloutsUtil("Mid", new RegionUtil[]{mid1}));
-    RegionUtil botMid1 = new RegionUtil(new PositionUtil(-5.0, 3.0, 12.7), new PositionUtil(-10.7, 4.5, -11.7));
-    RegionUtil botMid2 = new RegionUtil(new PositionUtil(5.0, 3.0, -8.0), new PositionUtil(-5.0, 4.5, -12.7));
-    RegionUtil botMid3 = new RegionUtil(new PositionUtil(-5.0, 3.0, 9.0), new PositionUtil(6.0, 5.5, 13.7));
-    RegionUtil botMid4 = new RegionUtil(new PositionUtil(-11.0, 3.0, -5.7), new PositionUtil(-11.7, 4.5, -3.3));
-    RegionUtil botMid5 = new RegionUtil(new PositionUtil(-11.7, 3.0, 6.7), new PositionUtil(-11.0, 7.5, 4.3));
-    RegionUtil botMid6 = new RegionUtil(new PositionUtil(-10.7, 3.0, -1.0), new PositionUtil(6.0, 4.5, 2.0));
-    list.add(new CalloutsUtil("Bottom Mid", new RegionUtil[]{botMid1, botMid2, botMid3, botMid4, botMid5, botMid6}));
-    RegionUtil midDoors1 = new RegionUtil(new PositionUtil(-11.0, 3.0, 2.7), new PositionUtil(-14.0, 4.5, -1.7));
-    list.add(new CalloutsUtil("Mid Doors", new RegionUtil[]{midDoors1}));
-    RegionUtil cat1 = new RegionUtil(new PositionUtil(0.3, 3.0, -12.0), new PositionUtil(13.7, 6.5, -29.0));
-    RegionUtil cat2 = new RegionUtil(new PositionUtil(4.0, 3.0, -29.0), new PositionUtil(-5.699, 4.5, -39.7));
-    list.add(new CalloutsUtil("Cat", new RegionUtil[]{cat1, cat2}));
-    RegionUtil truck1 = new RegionUtil(new PositionUtil(5.0, 3.0, -29.0), new PositionUtil(10.7, 7.5, -32.7));
-    list.add(new CalloutsUtil("Truck", new RegionUtil[]{truck1}));
-    RegionUtil stairs1 = new RegionUtil(new PositionUtil(-5.7, 3.5, -39.7), new PositionUtil(-14.7, 9.5, -35.3));
-    list.add(new CalloutsUtil("Stairs", new RegionUtil[]{stairs1}));
-    RegionUtil short1 = new RegionUtil(new PositionUtil(-14.701, 8.0, -35.3), new PositionUtil(-21.0, 9.5, -39.7));
-    RegionUtil short2 = new RegionUtil(new PositionUtil(-21.0, 9.5, -37.0), new PositionUtil(-32.0, 6.5, -35.3));
-    RegionUtil short3 = new RegionUtil(new PositionUtil(-29.0, 10.5, -41.0), new PositionUtil(-24.0, 7.0, -38.0));
-    list.add(new CalloutsUtil("Short", new RegionUtil[]{short1, short2, short3}));
-    RegionUtil circle1 = new RegionUtil(new PositionUtil(-21.0, 8.0, -37.0), new PositionUtil(-24.0, 11.5, -41.3));
-    list.add(new CalloutsUtil("Circle", new RegionUtil[]{circle1}));
-    RegionUtil square1 = new RegionUtil(new PositionUtil(-29.0, 6.5, -37.0), new PositionUtil(-32.0, 10.5, -41.0));
-    list.add(new CalloutsUtil("Square", new RegionUtil[]{square1}));
-    RegionUtil aSite1 = new RegionUtil(new PositionUtil(-32.0, 6.0, -35.3), new PositionUtil(-35.0, 9.5, -50.0));
-    RegionUtil aSite2 = new RegionUtil(new PositionUtil(-35.0, 6.0, -48.7), new PositionUtil(-42.0, 7.5, -44.0));
-    RegionUtil aSite3 = new RegionUtil(new PositionUtil(-37.0, 6.0, -44.0), new PositionUtil(-44.0, 7.5, -35.3));
-    RegionUtil aSite4 = new RegionUtil(new PositionUtil(-42.0, 6.0, -43.0), new PositionUtil(-44.0, 7.5, -55.0));
-    RegionUtil aSite5 = new RegionUtil(new PositionUtil(-44.0, 6.0, -47.3), new PositionUtil(-45.7, 7.5, -58.7));
-    list.add(new CalloutsUtil("A Site", new RegionUtil[]{aSite1, aSite2, aSite3, aSite4, aSite5}));
-    RegionUtil aDefault1 = new RegionUtil(new PositionUtil(-37.0, 6.0, -44.0), new PositionUtil(-35.3, 7.5, -42.0));
-    list.add(new CalloutsUtil("A Default", new RegionUtil[]{aDefault1}));
-    RegionUtil ninja1 = new RegionUtil(new PositionUtil(-45.7, 6.0, -45.0), new PositionUtil(-44.3, 7.5, -47.0));
-    list.add(new CalloutsUtil("Ninja", new RegionUtil[]{ninja1}));
-    RegionUtil tree1 = new RegionUtil(new PositionUtil(-42.0, 6.0, -58.7), new PositionUtil(-38.0, 9.0, -55.0));
-    list.add(new CalloutsUtil("Tree", new RegionUtil[]{tree1}));
-    RegionUtil pocket1 = new RegionUtil(new PositionUtil(-37.7, 7.5, -55.0), new PositionUtil(-31.3, 4.0, -58.7));
-    list.add(new CalloutsUtil("Pocket", new RegionUtil[]{pocket1}));
-    RegionUtil ramp1 = new RegionUtil(new PositionUtil(-31.0, 3.5, -50.3), new PositionUtil(-37.0, 7.5, -54.99));
-    list.add(new CalloutsUtil("Ramp", new RegionUtil[]{ramp1}));
-    RegionUtil elevator1 = new RegionUtil(new PositionUtil(-22.3, 3.0, -41.0), new PositionUtil(-30.7, 4.5, -48.0));
-    list.add(new CalloutsUtil("Elevator", new RegionUtil[]{elevator1}));
-    RegionUtil arch1 = new RegionUtil(new PositionUtil(-44.0, 6.0, -35.3), new PositionUtil(-48.7, 7.5, -39.7));
-    list.add(new CalloutsUtil("Arch", new RegionUtil[]{arch1}));
-    RegionUtil aLong1 = new RegionUtil(new PositionUtil(-31.0, 3.0, -56.7), new PositionUtil(31.7, 7.5, -48.0));
-    RegionUtil aLong2 = new RegionUtil(new PositionUtil(31.7, 3.0, -48.0), new PositionUtil(-19.7, 7.5, -41.3));
-    RegionUtil aLong3 = new RegionUtil(new PositionUtil(31.7, 3.0, -41.0), new PositionUtil(23.3, 6.5, -28.3));
-    list.add(new CalloutsUtil("A Long", new RegionUtil[]{aLong1, aLong2, aLong3}));
-    RegionUtil longDoors1 = new RegionUtil(new PositionUtil(30.7, 5.0, -28.0), new PositionUtil(24.0, 9.5, -23.7));
-    list.add(new CalloutsUtil("Long Doors", new RegionUtil[]{longDoors1}));
-    RegionUtil ct1 = new RegionUtil(new PositionUtil(-22.3, 3.0, -39.0), new PositionUtil(-30.7, 4.5, -24.3));
-    list.add(new CalloutsUtil("CT", new RegionUtil[]{ct1}));
-    RegionUtil ctSpawn1 = new RegionUtil(new PositionUtil(-34.7, 3.0, -24.0), new PositionUtil(-21.3, 6.5, -7.0));
-    list.add(new CalloutsUtil("CT Spawn", new RegionUtil[]{ctSpawn1}));
-    RegionUtil ctMid1 = new RegionUtil(new PositionUtil(-32.7, 3.0, -6.7), new PositionUtil(-16.3, 7.5, 18.0));
-    RegionUtil ctMid2 = new RegionUtil(new PositionUtil(-16.3, 6.0, 18.0), new PositionUtil(-29.7, 8.5, 27.0));
-    list.add(new CalloutsUtil("CT Mid", new RegionUtil[]{ctMid1, ctMid2}));
-    RegionUtil eastDoors1 = new RegionUtil(new PositionUtil(-17.3, 7.0, 27.7), new PositionUtil(-19.7, 8.5, 27.0));
-    list.add(new CalloutsUtil("East Doors", new RegionUtil[]{eastDoors1}));
-    RegionUtil westDoors1 = new RegionUtil(new PositionUtil(-27.3, 7.0, 27.7), new PositionUtil(-29.7, 8.5, 27.0));
-    list.add(new CalloutsUtil("West Doors", new RegionUtil[]{westDoors1}));
-    RegionUtil closeLeft1 = new RegionUtil(new PositionUtil(-15.3, 7.0, 45.0), new PositionUtil(-18.0, 8.5, 48.7));
-    list.add(new CalloutsUtil("Close Left", new RegionUtil[]{closeLeft1}));
-    RegionUtil bSite1 = new RegionUtil(new PositionUtil(-18.1, 7.0, 48.7), new PositionUtil(-27.0, 10.5, 38.0));
-    RegionUtil bSite2 = new RegionUtil(new PositionUtil(-27.0, 7.0, 39.0), new PositionUtil(-36.7, 8.5, 34.0));
-    RegionUtil bSite3 = new RegionUtil(new PositionUtil(-21.0, 7.0, 34.0), new PositionUtil(-33.0, 10.5, 29.3));
-    RegionUtil bSite4 = new RegionUtil(new PositionUtil(-20.3, 7.0, 34.0), new PositionUtil(-27.0, 8.5, 38.0));
-    list.add(new CalloutsUtil("B Site", new RegionUtil[]{bSite1, bSite2, bSite3, bSite4}));
-    RegionUtil underWindow1 = new RegionUtil(new PositionUtil(-36.7, 7.0, 33.0), new PositionUtil(-33.0, 10.5, 29.3));
-    list.add(new CalloutsUtil("Under Window", new RegionUtil[]{underWindow1}));
-    RegionUtil headshot1 = new RegionUtil(new PositionUtil(-32.3, 7.0, 39.0), new PositionUtil(-36.7, 8.5, 40.7));
-    list.add(new CalloutsUtil("Headshot", new RegionUtil[]{headshot1}));
-    RegionUtil car1 = new RegionUtil(new PositionUtil(-20.0, 7.0, 38.0), new PositionUtil(-16.3, 7.0, 29.3));
-    list.add(new CalloutsUtil("Car", new RegionUtil[]{car1}));
-    RegionUtil bCubby1 = new RegionUtil(new PositionUtil(-27.0, 7.0, 43.3), new PositionUtil(-28.7, 8.5, 48.7));
-    list.add(new CalloutsUtil("B Cubby", new RegionUtil[]{bCubby1}));
-    RegionUtil panes1 = new RegionUtil(new PositionUtil(-28.0, 10.0, 47.0), new PositionUtil(-29.137, 12.5, 44.0));
-    list.add(new CalloutsUtil("Panes", new RegionUtil[]{panes1}));
-    RegionUtil outsideTuns1 = new RegionUtil(new PositionUtil(37.0, 7.0, 46.0), new PositionUtil(10.0, 10.5, 27.0));
-    list.add(new CalloutsUtil("Outside Tuns", new RegionUtil[]{outsideTuns1}));
-    RegionUtil upperTunnels1 = new RegionUtil(new PositionUtil(-8.0, 10.5, 27.0), new PositionUtil(5.0, 7.0, 46.0));
-    RegionUtil upperTunnels2 = new RegionUtil(new PositionUtil(-16.0, 7.0, 41.3), new PositionUtil(-7.0, 9.5, 44.7));
-    list.add(new CalloutsUtil("Upper Tunnels", new RegionUtil[]{upperTunnels1, upperTunnels2}));
-    RegionUtil lowerTunnels1 = new RegionUtil(new PositionUtil(-3.0, 8.5, 26.0), new PositionUtil(0.0, 3.0, 14.0));
-    list.add(new CalloutsUtil("Lower Tunnels", new RegionUtil[]{lowerTunnels1}));
-    RegionUtil bDoors1 = new RegionUtil(new PositionUtil(-21.0, 7.0, 27.0), new PositionUtil(-26.0, 8.5, 31.0));
-    list.add(new CalloutsUtil("B Doors", new RegionUtil[]{bDoors1}));
-    RegionUtil window1 = new RegionUtil(new PositionUtil(-35.0, 12.5, 29.0), new PositionUtil(-31.0, 6.5, 19.0));
-    list.add(new CalloutsUtil("Window", new RegionUtil[]{window1}));
-    RegionUtil tPlat1 = new RegionUtil(new PositionUtil(55.0, 7.5, 29.0), new PositionUtil(37.0, 13.5, 46.0));
-    list.add(new CalloutsUtil("T Plat", new RegionUtil[]{tPlat1}));
+    Map<String, RegionUtil[]> calloutsMap = new HashMap<>();
+
+    calloutsMap.put("baseballaholic", new RegionUtil[]{
+        createRegion(new PositionUtil(22.3, 5.0, -8.3), new PositionUtil(22.3, 5.0, -8.3))
+    });
+
+    calloutsMap.put("T Spawn", new RegionUtil[]{
+        createRegion(new PositionUtil(42.3, 10.0, 29.0), new PositionUtil(52.7, 13.5, -6.0))
+    });
+
+    calloutsMap.put("T Ramp", new RegionUtil[]{
+        createRegion(new PositionUtil(52.7, 13.5, -6.0), new PositionUtil(38.0, 5.0, -21.0))
+    });
+
+    calloutsMap.put("Outside Long", new RegionUtil[]{
+        createRegion(new PositionUtil(37.0, 5.0, -13.0), new PositionUtil(23.3, 8.5, -23.0))
+    });
+
+    calloutsMap.put("Top Mid", new RegionUtil[]{
+        createRegion(new PositionUtil(33.0, 4.0, -14.0), new PositionUtil(15.3, 8.5, 3.7))
+    });
+
+    calloutsMap.put("Suicide", new RegionUtil[]{
+        createRegion(new PositionUtil(33.0, 7.0, -0.7), new PositionUtil(41.7, 8.5, 4.7))
+    });
+
+    calloutsMap.put("A Pillar", new RegionUtil[]{
+        createRegion(new PositionUtil(6.0, 3.0, -8.0), new PositionUtil(-1.0, 5.5, -1.0))
+    });
+
+    calloutsMap.put("B Pillar", new RegionUtil[]{
+        createRegion(new PositionUtil(2.0, 6.5, 2.0), new PositionUtil(-5.0, 3.0, 9.0))
+    });
+
+    calloutsMap.put("Mid", new RegionUtil[]{
+        createRegion(new PositionUtil(6.0, 3.0, -14.7), new PositionUtil(15.0, 7.5, 12.7))
+    });
+
+    calloutsMap.put("Bottom Mid", new RegionUtil[]{
+        createRegion(new PositionUtil(-5.0, 3.0, 12.7), new PositionUtil(-10.7, 4.5, -11.7)),
+        createRegion(new PositionUtil(5.0, 3.0, -8.0), new PositionUtil(-5.0, 4.5, -12.7)),
+        createRegion(new PositionUtil(-5.0, 3.0, 9.0), new PositionUtil(6.0, 5.5, 13.7)),
+        createRegion(new PositionUtil(-11.0, 3.0, -5.7), new PositionUtil(-11.7, 4.5, -3.3)),
+        createRegion(new PositionUtil(-11.7, 3.0, 6.7), new PositionUtil(-11.0, 7.5, 4.3)),
+        createRegion(new PositionUtil(-10.7, 3.0, -1.0), new PositionUtil(6.0, 4.5, 2.0))
+    });
+
+    calloutsMap.put("Mid Doors", new RegionUtil[]{
+        createRegion(new PositionUtil(-11.0, 3.0, 2.7), new PositionUtil(-14.0, 4.5, -1.7))
+    });
+
+    calloutsMap.put("Cat", new RegionUtil[]{
+        createRegion(new PositionUtil(0.3, 3.0, -12.0), new PositionUtil(13.7, 6.5, -29.0)),
+        createRegion(new PositionUtil(4.0, 3.0, -29.0), new PositionUtil(-5.699, 4.5, -39.7))
+    });
+
+    calloutsMap.put("Truck", new RegionUtil[]{
+        createRegion(new PositionUtil(5.0, 3.0, -29.0), new PositionUtil(10.7, 7.5, -32.7))
+    });
+
+    calloutsMap.put("Stairs", new RegionUtil[]{
+        createRegion(new PositionUtil(-5.7, 3.5, -39.7), new PositionUtil(-14.7, 9.5, -35.3))
+    });
+
+    calloutsMap.put("Short", new RegionUtil[]{
+        createRegion(new PositionUtil(-14.701, 8.0, -35.3), new PositionUtil(-21.0, 9.5, -39.7)),
+        createRegion(new PositionUtil(-21.0, 9.5, -37.0), new PositionUtil(-32.0, 6.5, -35.3)),
+        createRegion(new PositionUtil(-29.0, 10.5, -41.0), new PositionUtil(-24.0, 7.0, -38.0))
+    });
+
+    calloutsMap.put("Circle", new RegionUtil[]{
+        createRegion(new PositionUtil(-21.0, 8.0, -37.0), new PositionUtil(-24.0, 11.5, -41.3))
+    });
+
+    calloutsMap.put("Square", new RegionUtil[]{
+        createRegion(new PositionUtil(-29.0, 6.5, -37.0), new PositionUtil(-32.0, 10.5, -41.0))
+    });
+
+    calloutsMap.put("A Site", new RegionUtil[]{
+        createRegion(new PositionUtil(-32.0, 6.0, -35.3), new PositionUtil(-35.0, 9.5, -50.0)),
+        createRegion(new PositionUtil(-35.0, 6.0, -48.7), new PositionUtil(-42.0, 7.5, -44.0)),
+        createRegion(new PositionUtil(-37.0, 6.0, -44.0), new PositionUtil(-44.0, 7.5, -35.3)),
+        createRegion(new PositionUtil(-42.0, 6.0, -43.0), new PositionUtil(-44.0, 7.5, -55.0)),
+        createRegion(new PositionUtil(-44.0, 6.0, -47.3), new PositionUtil(-45.7, 7.5, -58.7))
+    });
+
+    calloutsMap.put("A Default", new RegionUtil[]{
+        createRegion(new PositionUtil(-37.0, 6.0, -44.0), new PositionUtil(-35.3, 7.5, -42.0))
+    });
+
+    calloutsMap.put("Ninja", new RegionUtil[]{
+        createRegion(new PositionUtil(-45.7, 6.0, -45.0), new PositionUtil(-44.3, 7.5, -47.0))
+    });
+
+    calloutsMap.put("Tree", new RegionUtil[]{
+        createRegion(new PositionUtil(-42.0, 6.0, -58.7), new PositionUtil(-38.0, 9.0, -55.0))
+    });
+
+    calloutsMap.put("Pocket", new RegionUtil[]{
+        createRegion(new PositionUtil(-37.7, 7.5, -55.0), new PositionUtil(-31.3, 4.0, -58.7))
+    });
+
+    calloutsMap.put("Ramp", new RegionUtil[]{
+        createRegion(new PositionUtil(-31.0, 3.5, -50.3), new PositionUtil(-37.0, 7.5, -54.99))
+    });
+
+    calloutsMap.put("Elevator", new RegionUtil[]{
+        createRegion(new PositionUtil(-22.3, 3.0, -41.0), new PositionUtil(-30.7, 4.5, -48.0))
+    });
+
+    calloutsMap.put("Arch", new RegionUtil[]{
+        createRegion(new PositionUtil(-44.0, 6.0, -35.3), new PositionUtil(-48.7, 7.5, -39.7))
+    });
+
+    calloutsMap.put("A Long", new RegionUtil[]{
+        createRegion(new PositionUtil(-31.0, 3.0, -56.7), new PositionUtil(31.7, 7.5, -48.0)),
+        createRegion(new PositionUtil(31.7, 3.0, -48.0), new PositionUtil(-19.7, 7.5, -41.3)),
+        createRegion(new PositionUtil(31.7, 3.0, -41.0), new PositionUtil(23.3, 6.5, -28.3))
+    });
+
+    calloutsMap.put("Long Doors", new RegionUtil[]{
+        createRegion(new PositionUtil(30.7, 5.0, -28.0), new PositionUtil(24.0, 9.5, -23.7))
+    });
+
+    calloutsMap.put("CT", new RegionUtil[]{
+        createRegion(new PositionUtil(-22.3, 3.0, -39.0), new PositionUtil(-30.7, 4.5, -24.3))
+    });
+
+    calloutsMap.put("CT Spawn", new RegionUtil[]{
+        createRegion(new PositionUtil(-34.7, 3.0, -24.0), new PositionUtil(-21.3, 6.5, -7.0))
+    });
+
+    calloutsMap.put("CT Mid", new RegionUtil[]{
+        createRegion(new PositionUtil(-32.7, 3.0, -6.7), new PositionUtil(-16.3, 7.5, 18.0)),
+        createRegion(new PositionUtil(-16.3, 6.0, 18.0), new PositionUtil(-29.7, 8.5, 27.0))
+    });
+
+    calloutsMap.put("East Doors", new RegionUtil[]{
+        createRegion(new PositionUtil(-17.3, 7.0, 27.7), new PositionUtil(-19.7, 8.5, 27.0))
+    });
+
+    calloutsMap.put("West Doors", new RegionUtil[]{
+        createRegion(new PositionUtil(-27.3, 7.0, 27.7), new PositionUtil(-29.7, 8.5, 27.0))
+    });
+
+    calloutsMap.put("Close Left", new RegionUtil[]{
+        createRegion(new PositionUtil(-15.3, 7.0, 45.0), new PositionUtil(-18.0, 8.5, 48.7))
+    });
+
+    calloutsMap.put("B Site", new RegionUtil[]{
+        createRegion(new PositionUtil(-18.1, 7.0, 48.7), new PositionUtil(-27.0, 10.5, 38.0)),
+        createRegion(new PositionUtil(-27.0, 7.0, 39.0), new PositionUtil(-36.7, 8.5, 34.0)),
+        createRegion(new PositionUtil(-21.0, 7.0, 34.0), new PositionUtil(-33.0, 10.5, 29.3)),
+        createRegion(new PositionUtil(-20.3, 7.0, 34.0), new PositionUtil(-27.0, 8.5, 38.0))
+    });
+
+    calloutsMap.put("Under Window", new RegionUtil[]{
+        createRegion(new PositionUtil(-36.7, 7.0, 33.0), new PositionUtil(-33.0, 10.5, 29.3))
+    });
+
+    calloutsMap.put("Headshot", new RegionUtil[]{
+        createRegion(new PositionUtil(-32.3, 7.0, 39.0), new PositionUtil(-36.7, 8.5, 40.7))
+    });
+
+    calloutsMap.put("Car", new RegionUtil[]{
+        createRegion(new PositionUtil(-20.0, 7.0, 38.0), new PositionUtil(-16.3, 7.0, 29.3))
+    });
+
+    calloutsMap.put("B Cubby", new RegionUtil[]{
+        createRegion(new PositionUtil(-27.0, 7.0, 43.3), new PositionUtil(-28.7, 8.5, 48.7))
+    });
+
+    calloutsMap.put("Panes", new RegionUtil[]{
+        createRegion(new PositionUtil(-28.0, 10.0, 47.0), new PositionUtil(-29.137, 12.5, 44.0))
+    });
+
+    calloutsMap.put("Outside Tuns", new RegionUtil[]{
+        createRegion(new PositionUtil(37.0, 7.0, 46.0), new PositionUtil(10.0, 10.5, 27.0))
+    });
+
+    calloutsMap.put("Upper Tunnels", new RegionUtil[]{
+        createRegion(new PositionUtil(-8.0, 10.5, 27.0), new PositionUtil(5.0, 7.0, 46.0)),
+        createRegion(new PositionUtil(-16.0, 7.0, 41.3), new PositionUtil(-7.0, 9.5, 44.7))
+    });
+
+    calloutsMap.put("Lower Tunnels", new RegionUtil[]{
+        createRegion(new PositionUtil(-3.0, 8.5, 26.0), new PositionUtil(0.0, 3.0, 14.0))
+    });
+
+    calloutsMap.put("B Doors", new RegionUtil[]{
+        createRegion(new PositionUtil(-21.0, 7.0, 27.0), new PositionUtil(-26.0, 8.5, 31.0))
+    });
+
+    calloutsMap.put("Window", new RegionUtil[]{
+        createRegion(new PositionUtil(-35.0, 12.5, 29.0), new PositionUtil(-31.0, 6.5, 19.0))
+    });
+
+    calloutsMap.put("T Plat", new RegionUtil[]{
+        createRegion(new PositionUtil(55.0, 7.5, 29.0), new PositionUtil(37.0, 13.5, 46.0))
+    });
+
+    for (Map.Entry<String, RegionUtil[]> entry : calloutsMap.entrySet()) {
+      list.add(new CalloutsUtil(entry.getKey(), entry.getValue()));
+    }
+
     return list;
   }
 
