@@ -73,7 +73,7 @@ public class CalloutsMod {
         processHypixelEvent();
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      getLogger().error(e);
     }
   }
 
