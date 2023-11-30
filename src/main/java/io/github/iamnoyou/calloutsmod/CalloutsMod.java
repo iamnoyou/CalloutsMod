@@ -1,6 +1,5 @@
 package io.github.iamnoyou.calloutsmod;
 
-import cc.polyfrost.oneconfig.utils.Multithreading;
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import cc.polyfrost.oneconfig.utils.hypixel.LocrawUtil;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -61,65 +59,104 @@ public class CalloutsMod {
 
   @SubscribeEvent
   public void onClientTick(TickEvent.ClientTickEvent event) {
-    Multithreading.runAsync(() -> {
-      try {
-        if (HypixelUtils.INSTANCE.isHypixel() && !LocrawUtil.INSTANCE.isInGame()) {
-          mapName = "N/A";
-          CalloutHUD.status = false;
-        }
-        if (HypixelUtils.INSTANCE.isHypixel() && LocrawUtil.INSTANCE.isInGame()) {
-          if (event.phase == Phase.START) {
-            ++getInstance().tickCounter;
-            if (getInstance().tickCounter >= 5) {
-              getInstance().tickCounter = 0;
-              try {
-                Multithreading.schedule(() -> {
-                  switch (LocrawUtil.INSTANCE.getLocrawInfo().getGameType()) {
-                    case COPS_AND_CRIMS:
-                    case REPLAY:
-                      CalloutHUD.status = true;
-                      break;
-                  }
-                  if (CalloutHUD.calloutTestMap.isEmpty()) {
-                    mapName = Objects.requireNonNull(LocrawUtil.INSTANCE.getLocrawInfo()).getMapName();
-                  } else {
-                    mapName = CalloutHUD.calloutTestMap;
-                  }
-                }, 1, TimeUnit.SECONDS);
-              } catch (NullPointerException e) {
-                getInstance().getLogger().error(e);
-              }
-              Minecraft mc = Minecraft.getMinecraft();
-              EntityPlayerSP player = mc.thePlayer;
-              if (player == null) {
-                return;
-              }
-              PositionUtil coords = getInstance().updateCoordinates();
-              if (getInstance().mapList.containsKey(mapName)) {
-                if (getInstance().last != null) {
-                  getInstance().same = false;
-                  RegionUtil[] lastRegions = getInstance().last.regions;
-                  for (RegionUtil region : lastRegions) {
-                    if (region.isInside(coords)) {
-                      getInstance().callout = getInstance().last;
-                      getInstance().same = true;
-                    }
-                  }
-                }
-                if (!getInstance().same) {
-                  getInstance().callout = getInstance().findCallout(coords);
-                }
-                if (getInstance().callout != null) {
-                  getInstance().calloutText = getInstance().callout.getName();
-                }
-              }
-            }
-          }
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
+    processTick(event);
+  }
+
+  private void processTick(TickEvent.ClientTickEvent event) {
+    try {
+      if (shouldResetStatus()) {
+        resetStatus();
+        return;
       }
-    });
+
+      if (shouldProcessHypixelEvent(event)) {
+        processHypixelEvent();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private boolean shouldResetStatus() {
+    return HypixelUtils.INSTANCE.isHypixel() && !LocrawUtil.INSTANCE.isInGame();
+  }
+
+  private void resetStatus() {
+    mapName = "N/A";
+    CalloutHUD.status = false;
+  }
+
+  private boolean shouldProcessHypixelEvent(TickEvent.ClientTickEvent event) {
+    return HypixelUtils.INSTANCE.isHypixel() && LocrawUtil.INSTANCE.isInGame() && event.phase == Phase.START;
+  }
+
+  private void processHypixelEvent() {
+    getInstance().tickCounter++;
+
+    if (getInstance().tickCounter >= getConfig().calloutHUD.updateSpeed) {
+      getInstance().tickCounter = 0;
+      processGameType();
+    }
+  }
+
+  private void processGameType() {
+    try {
+      handleGameType();
+    } catch (NullPointerException e) {
+      getLogger().error(e);
+    }
+  }
+
+  private void handleGameType() {
+    switch (LocrawUtil.INSTANCE.getLocrawInfo().getGameType()) {
+      case COPS_AND_CRIMS:
+      case REPLAY:
+        CalloutHUD.status = true;
+        updateMapName();
+        break;
+    }
+  }
+
+  private void updateMapName() {
+    if (CalloutHUD.calloutTestMap.isEmpty()) {
+      mapName = Objects.requireNonNull(LocrawUtil.INSTANCE.getLocrawInfo()).getMapName();
+    } else {
+      mapName = CalloutHUD.calloutTestMap;
+    }
+
+    EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+
+    if (player != null) {
+      PositionUtil coords = updateCoordinates();
+      processCallout(coords);
+    }
+  }
+
+  private void processCallout(PositionUtil coords) {
+    if (getInstance().mapList.containsKey(mapName)) {
+      if (getInstance().last != null) {
+        processLastCallout(coords);
+      }
+
+      if (!getInstance().same) {
+        getInstance().callout = getInstance().findCallout(coords);
+      }
+
+      if (getInstance().callout != null) {
+        getInstance().calloutText = getInstance().callout.getName();
+      }
+    }
+  }
+
+  private void processLastCallout(PositionUtil coords) {
+    getInstance().same = false;
+    RegionUtil[] lastRegions = getInstance().last.regions;
+    for (RegionUtil region : lastRegions) {
+      if (region.isInside(coords)) {
+        getInstance().callout = getInstance().last;
+        getInstance().same = true;
+      }
+    }
   }
 
   @SubscribeEvent
@@ -138,19 +175,19 @@ public class CalloutsMod {
   public PositionUtil updateCoordinates() {
     Minecraft mc = Minecraft.getMinecraft();
     EntityPlayerSP player = mc.thePlayer;
-    double posX = player.posX;
-    double posY = player.posY;
-    double posZ = player.posZ;
-    return new PositionUtil(posX, posY, posZ);
+    return new PositionUtil(player.posX, player.posY, player.posZ);
   }
 
-  public CalloutsUtil findCallout(PositionUtil coords) {
-    for (CalloutsUtil callout : this.mapList.get(mapName)) {
-      RegionUtil[] regions = callout.regions;
-      for (RegionUtil region : regions) {
-        if (region.isInside(coords)) {
-          this.last = callout;
-          return callout;
+  public CalloutsUtil findCallout(PositionUtil position) {
+    List<CalloutsUtil> callouts = this.mapList.get(mapName);
+    if (callouts != null) {
+      for (CalloutsUtil callout : callouts) {
+        RegionUtil[] regions = callout.regions;
+        for (RegionUtil region : regions) {
+          if (region.isInside(position)) {
+            this.last = callout;
+            return callout;
+          }
         }
       }
     }

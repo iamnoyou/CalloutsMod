@@ -1,10 +1,14 @@
 package io.github.iamnoyou.calloutsmod.hud;
 
+import cc.polyfrost.oneconfig.config.annotations.Info;
+import cc.polyfrost.oneconfig.config.annotations.Slider;
 import cc.polyfrost.oneconfig.config.annotations.Switch;
 import cc.polyfrost.oneconfig.config.annotations.Text;
+import cc.polyfrost.oneconfig.config.data.InfoType;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import io.github.iamnoyou.calloutsmod.CalloutsMod;
 
+@SuppressWarnings("unused")
 public class CalloutHUD extends SingleTextHud {
 
   public static boolean status;
@@ -21,16 +25,27 @@ public class CalloutHUD extends SingleTextHud {
   )
   public static String calloutTestMap = "";
 
+  @Info(
+      text = "There are 20 ticks per second, default value is every 5 ticks (every 0.25 seconds) there will be a check for updating the HUD display.",
+      type = InfoType.INFO, size = 2
+  )
+  private String useless02;
+
+  @Slider(
+      name = "Callout Update Speed (Based on Ticks)",
+      min = 0, max =  40, step = 1
+  )
+  public static int updateSpeed = 5;
+
   public CalloutHUD() {
     super("Callouts", true);
   }
 
   @Override
   public String getText(boolean example) {
-    if (CalloutsMod.getInstance().getCalloutText().trim().isEmpty()) {
-      return CalloutsMod.mapName;
-    }
-    return CalloutsMod.getInstance().getCalloutText();
+    return CalloutsMod.getInstance().getCalloutText().trim().isEmpty()
+        ? CalloutsMod.mapName
+        : CalloutsMod.getInstance().getCalloutText();
   }
 
   @Override

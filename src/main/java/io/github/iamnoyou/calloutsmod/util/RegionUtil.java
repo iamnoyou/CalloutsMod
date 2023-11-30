@@ -38,14 +38,12 @@ public class RegionUtil {
   }
 
   public boolean isInside(PositionUtil pos) {
-    if (!(pos.getX() < this.getMinX()) && !(pos.getX() > this.getMaxX())) {
-      if (!(pos.getY() < this.getMinY()) && !(pos.getY() > this.getMaxY())) {
-        return !(pos.getZ() < this.getMinZ()) && !(pos.getZ() > this.getMaxZ());
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
+    double x = pos.getX();
+    double y = pos.getY();
+    double z = pos.getZ();
+
+    return x >= getMinX() && x <= getMaxX() &&
+        y >= getMinY() && y <= getMaxY() &&
+        z >= getMinZ() && z <= getMaxZ();
   }
 }

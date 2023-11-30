@@ -9,6 +9,7 @@ import cc.polyfrost.oneconfig.config.data.ModType;
 import io.github.iamnoyou.calloutsmod.CalloutsMod;
 import io.github.iamnoyou.calloutsmod.hud.CalloutHUD;
 
+@SuppressWarnings("unused")
 public class CalloutsConfig extends Config {
 
   @Info(
