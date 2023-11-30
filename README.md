@@ -8,14 +8,14 @@ Hypixel CvC `1.8.9 forge` mod to display callouts on hud from player location, s
 [Download](https://github.com/iamnoyou/CalloutsMod/releases) `CalloutsMod-1.8.9-forge-<version>.jar` and place it in your mods folder within `.minecraft` mods directory.
 - .jar files with `-dev` or `-sources` are not intended for use.
 
-If you don't know where your `.minecraft` directory is, see the below `Locating .minecraft` section.
+If you don't know where your `.minecraft` directory is, see the below [`Locating .minecraft`](https://github.com/iamnoyou/CalloutsMod#------locating-minecraft----) section.
 
 ## Features
 `Right Shift` to open OneConfig menu or use `/calloutsmod` to open the config.
 > The `Callout:` text is removable by simply removing it from `Title` in the config.
 
 ![CalloutsMod Preview](https://i.imgur.com/jDN2G4W.png)
-![Config Preview](https://i.imgur.com/XKUQV5G.png)
+![Config Preview](https://i.imgur.com/z50cbG2.png)
 
 <details open>
   <summary>
@@ -70,7 +70,7 @@ In most file managers, hitting Ctrl + H toggles their hidden status. In macOS sp
 
 > Both tasks will work.
 >
-> `>= JDK 16`
+> `>= JDK 17`
 
 - Gradle: tasks > build > build
   - `./gradlew build`
