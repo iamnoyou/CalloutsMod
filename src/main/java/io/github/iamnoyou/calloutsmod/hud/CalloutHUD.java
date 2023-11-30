@@ -15,9 +15,16 @@ public class CalloutHUD extends SingleTextHud {
 
   @Switch(
       name = "Hide If Not In-Game Or A Supported Game",
-      description = "Makes it so the display only works in CvC and Replay gamemode servers."
+      description = "Makes it so the display only works in CvC and Replay gamemode servers.",
+      size = 2
   )
   public boolean hide = true;
+
+  @Switch(
+      name = "Automatically reset the value of -> Test Map Callout Display",
+      description = "Resets if you are on Hypixel and you are not in a game."
+  )
+  public static boolean autoResetCalloutTestMap = true;
 
   @Text(
       name = "Test Map Callout Display", placeholder = "Put map name here",

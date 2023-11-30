@@ -83,6 +83,7 @@ public class CalloutsMod {
 
   private void resetStatus() {
     mapName = "N/A";
+    CalloutHUD.calloutTestMap = CalloutHUD.autoResetCalloutTestMap ? "" : CalloutHUD.calloutTestMap;
     CalloutHUD.status = false;
   }
 
