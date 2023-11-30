@@ -1,8 +1,8 @@
-package com.github.iamnoyou.calloutsmod.callouts;
+package io.github.iamnoyou.calloutsmod.callouts;
 
-import com.github.iamnoyou.calloutsmod.util.CalloutsUtil;
-import com.github.iamnoyou.calloutsmod.util.PositionUtil;
-import com.github.iamnoyou.calloutsmod.util.RegionUtil;
+import io.github.iamnoyou.calloutsmod.util.CalloutsUtil;
+import io.github.iamnoyou.calloutsmod.util.PositionUtil;
+import io.github.iamnoyou.calloutsmod.util.RegionUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

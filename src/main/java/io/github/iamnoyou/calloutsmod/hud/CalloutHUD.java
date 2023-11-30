@@ -1,9 +1,9 @@
-package com.github.iamnoyou.calloutsmod.hud;
+package io.github.iamnoyou.calloutsmod.hud;
 
 import cc.polyfrost.oneconfig.config.annotations.Switch;
 import cc.polyfrost.oneconfig.config.annotations.Text;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
-import com.github.iamnoyou.calloutsmod.CalloutsMod;
+import io.github.iamnoyou.calloutsmod.CalloutsMod;
 
 public class CalloutHUD extends SingleTextHud {
 

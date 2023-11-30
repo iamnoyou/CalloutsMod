@@ -1,5 +1,8 @@
+![Compact Powered by OneConfig](https://polyfrost.org/img/compact_vector.svg)
 # CalloutsMod
-Hypixel CvC `1.8.9 forge` mod to display callouts on hud from player location.
+Hypixel CvC `1.8.9 forge` mod to display callouts on hud from player location, similar to CS2.
+
+> [Original mod developed by baseballaholic and others](https://github.com/baseballaholic/callouts-mod/)
 
 ## Usage
 [Download](https://github.com/iamnoyou/CalloutsMod/releases) `CalloutsMod-1.8.9-forge-<version>.jar` and place it in your mods folder within `.minecraft` mods directory.
@@ -11,7 +14,6 @@ If you don't know where your `.minecraft` directory is, see the below `Locating 
 `Right Shift` to open OneConfig menu or use `/calloutsmod` to open the config.
 > The `Callout:` text is removable by simply removing it from `Title` in the config.
 
-[OneConfig](https://github.com/Polyfrost/OneConfig) handles all the HUD display logic.
 ![CalloutsMod Preview](https://i.imgur.com/jDN2G4W.png)
 ![Config Preview](https://i.imgur.com/XKUQV5G.png)
 

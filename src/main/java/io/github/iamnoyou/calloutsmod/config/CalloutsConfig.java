@@ -1,4 +1,4 @@
-package com.github.iamnoyou.calloutsmod.config;
+package io.github.iamnoyou.calloutsmod.config;
 
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.HUD;
@@ -6,8 +6,8 @@ import cc.polyfrost.oneconfig.config.annotations.Info;
 import cc.polyfrost.oneconfig.config.data.InfoType;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
-import com.github.iamnoyou.calloutsmod.CalloutsMod;
-import com.github.iamnoyou.calloutsmod.hud.CalloutHUD;
+import io.github.iamnoyou.calloutsmod.CalloutsMod;
+import io.github.iamnoyou.calloutsmod.hud.CalloutHUD;
 
 public class CalloutsConfig extends Config {
 

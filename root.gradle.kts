@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.6.21" apply false
-    id("cc.polyfrost.multi-version.root")
+    kotlin("jvm") version "1.8.22" apply false
+    id("org.polyfrost.multi-version.root")
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 }
 

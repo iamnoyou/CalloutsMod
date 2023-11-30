@@ -1,14 +1,14 @@
 @file:Suppress("UnstableApiUsage", "PropertyName")
 
-import cc.polyfrost.gradle.util.noServerRunConfigs
+import org.polyfrost.gradle.util.noServerRunConfigs
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm")
-    id("cc.polyfrost.multi-version")
-    id("cc.polyfrost.defaults.repo")
-    id("cc.polyfrost.defaults.java")
-    id("cc.polyfrost.defaults.loom")
+    id("org.polyfrost.multi-version")
+    id("org.polyfrost.defaults.repo")
+    id("org.polyfrost.defaults.java")
+    id("org.polyfrost.defaults.loom")
     id("com.github.johnrengelman.shadow")
     id("net.kyori.blossom") version "1.3.1"
     id("io.freefair.lombok") version "8.4"
@@ -32,7 +32,7 @@ blossom {
 }
 
 version = mod_version
-group = "com.github.iamnoyou"
+group = "io.github.iamnoyou"
 
 base {
     archivesName.set("$mod_archives_name-$platform")
@@ -41,12 +41,11 @@ base {
 loom {
     noServerRunConfigs()
     if (project.platform.isLegacyForge) {
-        launchConfigs.named("client") {
-            arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
-            property(
-                    "mixin.debug.export",
-                    "true"
-            )
+        runConfigs {
+            "client" {
+                programArgs("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
+                property("mixin.debug.export", "true")
+            }
         }
     }
 }
@@ -66,16 +65,15 @@ java {
 }
 
 repositories {
-    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
-    maven("https://repo.polyfrost.cc/releases")
+    maven("https://repo.polyfrost.org/releases")
 }
 
 dependencies {
-    modCompileOnly("cc.polyfrost:oneconfig-$platform:0.2.0-alpha+")
+    modCompileOnly("cc.polyfrost:oneconfig-$platform:0.2.1-alpha+")
+    modRuntimeOnly("me.djtheredstoner:DevAuth-${if (platform.isFabric) "fabric" else if (platform.isLegacyForge) "forge-legacy" else "forge-latest"}:1.1.2")
 
     if (platform.isLegacyForge) {
         shade("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+")
-        runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
     }
 }
 
@@ -143,7 +141,7 @@ tasks {
     }
 
     remapJar {
-        input.set(shadowJar.get().archiveFile)
+        inputFile.set(shadowJar.get().archiveFile)
         archiveClassifier.set("")
     }
 

@@ -1,4 +1,4 @@
-package com.github.iamnoyou.calloutsmod.util;
+package io.github.iamnoyou.calloutsmod.util;
 
 import lombok.Getter;
 

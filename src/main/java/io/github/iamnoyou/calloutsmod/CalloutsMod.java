@@ -1,16 +1,16 @@
-package com.github.iamnoyou.calloutsmod;
+package io.github.iamnoyou.calloutsmod;
 
 import cc.polyfrost.oneconfig.utils.Multithreading;
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import cc.polyfrost.oneconfig.utils.hypixel.LocrawUtil;
-import com.github.iamnoyou.calloutsmod.command.CalloutsCommand;
-import com.github.iamnoyou.calloutsmod.config.CalloutsConfig;
-import com.github.iamnoyou.calloutsmod.hud.CalloutHUD;
-import com.github.iamnoyou.calloutsmod.util.CalloutCreatorUtil;
-import com.github.iamnoyou.calloutsmod.util.CalloutsUtil;
-import com.github.iamnoyou.calloutsmod.util.PositionUtil;
-import com.github.iamnoyou.calloutsmod.util.RegionUtil;
+import io.github.iamnoyou.calloutsmod.command.CalloutsCommand;
+import io.github.iamnoyou.calloutsmod.config.CalloutsConfig;
+import io.github.iamnoyou.calloutsmod.hud.CalloutHUD;
+import io.github.iamnoyou.calloutsmod.util.CalloutCreatorUtil;
+import io.github.iamnoyou.calloutsmod.util.CalloutsUtil;
+import io.github.iamnoyou.calloutsmod.util.PositionUtil;
+import io.github.iamnoyou.calloutsmod.util.RegionUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
