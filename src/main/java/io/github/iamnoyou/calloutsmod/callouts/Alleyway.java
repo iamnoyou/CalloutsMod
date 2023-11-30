@@ -14,7 +14,7 @@ public class Alleyway {
     return new RegionUtil(pos1, pos2);
   }
 
-  public static List<CalloutsUtil> createCallouts() {
+  public static List<CalloutsUtil> createCalloutsList() {
     List<CalloutsUtil> list = new ArrayList<>();
     Map<String, RegionUtil[]> calloutsMap = new HashMap<>();
 

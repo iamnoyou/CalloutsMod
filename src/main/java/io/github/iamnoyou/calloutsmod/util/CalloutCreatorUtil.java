@@ -20,18 +20,18 @@ public class CalloutCreatorUtil {
 
   public static Map<String, List<CalloutsUtil>> getAllCallouts() {
     Map<String, List<CalloutsUtil>> map = new HashMap<>();
-    map.put("Sandstorm", Sandstorm.createCallouts());
-    map.put("Reserve", Reserve.createCallouts());
-    map.put("Junction", Junction.createCallouts());
-    map.put("Ruins", Ruins.createCallouts());
-    map.put("Atomic V2", AtomicV2.createCallouts());
-    map.put("Alleyway", Alleyway.createCallouts());
-    map.put("Bazaar", Bazaar.createCallouts());
-    map.put("Castle", Castle.createCallouts());
-    map.put("Temple", Temple.createCallouts());
-    map.put("Derailed", Derailed.createCallouts());
-    map.put("Overgrown", Overgrown.createCallouts());
-    map.put("Carrier", Carrier.createCallouts());
+    map.put("Sandstorm", Sandstorm.createCalloutsList());
+    map.put("Reserve", Reserve.createCalloutsList());
+    map.put("Junction", Junction.createCalloutsList());
+    map.put("Ruins", Ruins.createCalloutsList());
+    map.put("Atomic V2", AtomicV2.createCalloutsList());
+    map.put("Alleyway", Alleyway.createCalloutsList());
+    map.put("Bazaar", Bazaar.createCalloutsList());
+    map.put("Castle", Castle.createCalloutsList());
+    map.put("Temple", Temple.createCalloutsList());
+    map.put("Derailed", Derailed.createCalloutsList());
+    map.put("Overgrown", Overgrown.createCalloutsList());
+    map.put("Carrier", Carrier.createCalloutsList());
     return map;
   }
 
