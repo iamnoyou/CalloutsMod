@@ -57,7 +57,7 @@ In most file managers, hitting Ctrl + H toggles their hidden status. In macOS sp
 
 > Note: Tested in Intellij IDE, information may differ for a different ide.
 
-- Clone this repository. `https://github.com/iamnoyou/CalloutsMod.git`
+- Clone this repository.
 - Import as an Intellij IDEA Project and let it configure.
 - Reload gradle project.
 
