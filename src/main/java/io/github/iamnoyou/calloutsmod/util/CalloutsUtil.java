@@ -10,7 +10,7 @@ public class CalloutsUtil {
 
   public CalloutsUtil(String name, RegionUtil[] regions) {
     this.name = name;
-    this.regions = regions;
+    this.regions = regions.clone();
   }
 
 }

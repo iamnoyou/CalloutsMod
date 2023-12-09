@@ -9,6 +9,10 @@ public class RegionUtil {
   private PositionUtil pos2;
 
   public RegionUtil(PositionUtil pos1, PositionUtil pos2) {
+    if (pos1 == null || pos2 == null) {
+      throw new IllegalArgumentException("Positions cannot be null! Position 1: " + pos1 + " : Position 2: " + pos2);
+    }
+
     this.pos1 = pos1;
     this.pos2 = pos2;
   }
@@ -45,5 +49,9 @@ public class RegionUtil {
     return x >= getMinX() && x <= getMaxX() &&
         y >= getMinY() && y <= getMaxY() &&
         z >= getMinZ() && z <= getMaxZ();
+  }
+
+  public static RegionUtil createRegion(PositionUtil pos1, PositionUtil pos2) {
+    return new RegionUtil(pos1, pos2);
   }
 }
