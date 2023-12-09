@@ -15,4 +15,9 @@ public class PositionUtil {
     this.z = z;
   }
 
+  @Override
+  public String toString() {
+    return String.format("%.2f, %.2f, %.2f", x, y, z);
+  }
+
 }

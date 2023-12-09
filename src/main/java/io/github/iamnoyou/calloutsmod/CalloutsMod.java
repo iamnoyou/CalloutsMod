@@ -6,8 +6,10 @@ import cc.polyfrost.oneconfig.utils.hypixel.LocrawUtil;
 import io.github.iamnoyou.calloutsmod.command.CalloutsCommand;
 import io.github.iamnoyou.calloutsmod.config.CalloutsConfig;
 import io.github.iamnoyou.calloutsmod.hud.CalloutHUD;
+import io.github.iamnoyou.calloutsmod.hud.RegionHighlighterHUD;
 import io.github.iamnoyou.calloutsmod.util.CalloutCreatorUtil;
 import io.github.iamnoyou.calloutsmod.util.CalloutsUtil;
+import io.github.iamnoyou.calloutsmod.util.HighlighterUtil;
 import io.github.iamnoyou.calloutsmod.util.PositionUtil;
 import io.github.iamnoyou.calloutsmod.util.RegionUtil;
 import java.util.HashMap;
@@ -54,7 +56,7 @@ public class CalloutsMod {
     this.mapList = CalloutCreatorUtil.getAllCallouts();
     config = new CalloutsConfig();
     registerCommands(new CalloutsCommand());
-    registerEvents(this);
+    registerEvents(this, new HighlighterUtil());
   }
 
   @SubscribeEvent
@@ -85,6 +87,7 @@ public class CalloutsMod {
     mapName = "N/A";
     CalloutHUD.calloutTestMap = CalloutHUD.autoResetCalloutTestMap ? "" : CalloutHUD.calloutTestMap;
     CalloutHUD.status = false;
+    RegionHighlighterHUD.status = false;
   }
 
   private boolean shouldProcessHypixelEvent(TickEvent.ClientTickEvent event) {
@@ -113,6 +116,7 @@ public class CalloutsMod {
       case COPS_AND_CRIMS:
       case REPLAY:
         CalloutHUD.status = true;
+        RegionHighlighterHUD.status = true;
         updateMapName();
         break;
     }
@@ -173,13 +177,13 @@ public class CalloutsMod {
     }
   }
 
-  public PositionUtil updateCoordinates() {
+  private PositionUtil updateCoordinates() {
     Minecraft mc = Minecraft.getMinecraft();
     EntityPlayerSP player = mc.thePlayer;
     return new PositionUtil(player.posX, player.posY, player.posZ);
   }
 
-  public CalloutsUtil findCallout(PositionUtil position) {
+  private CalloutsUtil findCallout(PositionUtil position) {
     List<CalloutsUtil> callouts = this.mapList.get(mapName);
     if (callouts != null) {
       for (CalloutsUtil callout : callouts) {
@@ -188,6 +192,28 @@ public class CalloutsMod {
           if (region.isInside(position)) {
             this.last = callout;
             return callout;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  public String findRegions(PositionUtil position) {
+    List<CalloutsUtil> callouts = this.mapList.get(mapName);
+    if (callouts != null) {
+      for (CalloutsUtil callout : callouts) {
+        RegionUtil[] regions = callout.getRegions();
+        for (int i = 0; i < regions.length; i++) {
+          RegionUtil region = regions[i];
+          if (region.isInside(position)) {
+            StringBuilder result1 = new StringBuilder();
+            result1.append(region.getMinX()).append(", ").append(region.getMinY()).append(", ").append(region.getMinZ());
+            getConfig().regionStart = result1.toString();
+            StringBuilder result2 = new StringBuilder();
+            result2.append(region.getMaxX()).append(", ").append(region.getMaxY()).append(", ").append(region.getMaxZ());
+            getConfig().regionEnd = result2.toString();
+            return "Region from position: [" + result1.toString() + "] [" + result2.toString() + "]";
           }
         }
       }
