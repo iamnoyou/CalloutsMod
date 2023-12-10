@@ -134,16 +134,10 @@ public class CalloutsConfig extends Config {
 
     registerKeyBind(hotkeyCurrentCalloutRegionHighlighter, () -> {
       if (CalloutsConfig.regionHighlighter && RegionHighlighterHUD.status) {
-        try {
-          if (CalloutsMod.getInstance().findRegions(new PositionUtil(UPlayer.getPosX(), UPlayer.getPosY(), UPlayer.getPosZ())) != null) {
-            Notifications.INSTANCE.send("Region Highlighter Position Updated", CalloutsMod.getInstance().findRegions(new PositionUtil(UPlayer.getPosX(), UPlayer.getPosY(), UPlayer.getPosZ())));
-          } else {
-            Notifications.INSTANCE.send("Region Highlighter", "This location does not contain a region within a callout for this map!");
-          }
-        } catch (NullPointerException e) {
-          if (debugMode) {
-            e.printStackTrace();
-          }
+        if (CalloutsMod.getInstance().findRegions(new PositionUtil(UPlayer.getPosX(), UPlayer.getPosY(), UPlayer.getPosZ())) != null) {
+          Notifications.INSTANCE.send("Region Highlighter Position Updated", CalloutsMod.getInstance().findRegions(new PositionUtil(UPlayer.getPosX(), UPlayer.getPosY(), UPlayer.getPosZ())));
+        } else {
+          Notifications.INSTANCE.send("Region Highlighter", "This location does not contain a region within a callout for this map!");
         }
       }
     });

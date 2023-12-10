@@ -2,6 +2,7 @@ package io.github.iamnoyou.calloutsmod;
 
 import cc.polyfrost.oneconfig.utils.commands.CommandManager;
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
+import cc.polyfrost.oneconfig.utils.hypixel.LocrawInfo;
 import cc.polyfrost.oneconfig.utils.hypixel.LocrawUtil;
 import io.github.iamnoyou.calloutsmod.command.CalloutsCommand;
 import io.github.iamnoyou.calloutsmod.config.CalloutsConfig;
@@ -75,7 +76,7 @@ public class CalloutsMod {
         processHypixelEvent();
       }
     } catch (Exception e) {
-      getLogger().error(e);
+      logger.error("Error occured during method processTick", e);
     }
   }
 
@@ -107,18 +108,21 @@ public class CalloutsMod {
     try {
       handleGameType();
     } catch (NullPointerException e) {
-      getLogger().error(e);
+      logger.error("Error occured in method processGameType", e);
     }
   }
 
   private void handleGameType() {
-    switch (LocrawUtil.INSTANCE.getLocrawInfo().getGameType()) {
-      case COPS_AND_CRIMS:
-      case REPLAY:
-        CalloutHUD.status = true;
-        RegionHighlighterHUD.status = true;
-        updateMapName();
-        break;
+    LocrawInfo locrawInfo = LocrawUtil.INSTANCE.getLocrawInfo();
+    if (locrawInfo != null && locrawInfo.getGameType() != null) {
+      switch (LocrawUtil.INSTANCE.getLocrawInfo().getGameType()) {
+        case COPS_AND_CRIMS:
+        case REPLAY:
+          CalloutHUD.status = true;
+          RegionHighlighterHUD.status = true;
+          updateMapName();
+          break;
+      }
     }
   }
 
@@ -204,8 +208,16 @@ public class CalloutsMod {
     if (callouts != null) {
       for (CalloutsUtil callout : callouts) {
         RegionUtil[] regions = callout.getRegions();
+        if (regions == null) {
+          logger.error("Regions is null for callout: " + callout);
+          continue;
+        }
         for (int i = 0; i < regions.length; i++) {
           RegionUtil region = regions[i];
+          if (region == null) {
+            logger.error("Region is null for callout: " + callout + ", index: " + i);
+            continue;
+          }
           if (region.isInside(position)) {
             StringBuilder result1 = new StringBuilder();
             result1.append(region.getMinX()).append(", ").append(region.getMinY()).append(", ").append(region.getMinZ());
